@@ -5,6 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import { appConfig } from "./config";
+import { routes } from "./routes";
 import { logger } from "./utils";
 
 const app = express();
@@ -26,9 +27,7 @@ app.use(
   }),
 );
 
-app.get("/", (req, res) => {
-  res.send({ message: "Server is running smoothly! 🚀" });
-});
+app.use("/api", routes);
 
 const initializeApp = () => {
   try {
