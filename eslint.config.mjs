@@ -41,6 +41,8 @@ export default defineConfig([{
   rules: {
     "prettier/prettier": "error",
     "no-console": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unsafe-function-type": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
