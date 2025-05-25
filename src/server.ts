@@ -1,10 +1,11 @@
+import express from "express";
+
+import compression from "compression";
 import helmet from "helmet";
 import morgan from "morgan";
-import express from "express";
-import compression from "compression";
 
-import { logger } from "./utils";
 import { appConfig } from "./config";
+import { logger } from "./utils";
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.use(compression());
 app.use(
   morgan("combined", {
     stream: { write: (message) => logger.http(message.trim()) },
-  })
+  }),
 );
 
 app.get("/", (req, res) => {
@@ -33,7 +34,7 @@ const initializeApp = () => {
   try {
     app.listen(appConfig.PORT, () => {
       logger.info(
-        `[${appConfig.NODE_ENV}] Server is running on http://localhost:${appConfig.PORT} 🚀🚀`
+        `[${appConfig.NODE_ENV}] Server is running on http://localhost:${appConfig.PORT} 🚀🚀`,
       );
     });
   } catch (error) {

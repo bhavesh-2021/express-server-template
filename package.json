@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dev": "nodemon",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "prettify": "prettier --write 'src/**/*.{ts,js,json,md}'",
+    "lint-fix": "eslint --fix 'src/**/*.{ts,js}'",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -22,11 +25,21 @@
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/compression": "^1.8.0",
     "@types/express": "^5.0.2",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.21",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.1.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.0.0",
     "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

@@ -1,4 +1,5 @@
-import { createLogger, format, transports, Logger } from "winston";
+import type { Logger } from "winston";
+import { createLogger, format, transports } from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
 
 const { combine, timestamp, printf, errors, colorize, splat } = format;
@@ -10,8 +11,7 @@ const customFormat = printf(({ level, message, timestamp, stack, ...meta }) => {
 });
 
 // Filter for specific log level
-const levelFilter = (level: string) =>
-  format((info) => (info.level === level ? info : false))();
+const levelFilter = (level: string) => format((info) => (info.level === level ? info : false))();
 
 // Factory function for DailyRotateFile transports
 const createDailyRotateTransport = (level: string, filenamePrefix: string) =>
@@ -31,16 +31,12 @@ export const logger: Logger = createLogger({
     errors({ stack: true }),
     splat(),
     timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-    customFormat
+    customFormat,
   ),
   transports: [
     // Console (colorized for dev)
     new transports.Console({
-      format: combine(
-        colorize(),
-        timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-        customFormat
-      ),
+      format: combine(colorize(), timestamp({ format: "YYYY-MM-DD HH:mm:ss" }), customFormat),
     }),
 
     // Daily rotate files by level
