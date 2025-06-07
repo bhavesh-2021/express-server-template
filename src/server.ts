@@ -35,6 +35,9 @@ const initializeApp = async () => {
     await database.authenticate();
     logger.info("Database connected successfully ✅");
 
+    await database.sync({ alter: true });
+    logger.info("Database is synced successfully ✅");
+
     app.listen(appConfig.PORT, () => {
       logger.info(
         `[${appConfig.NODE_ENV}] Server is running on http://localhost:${appConfig.PORT} 🚀🚀`,
