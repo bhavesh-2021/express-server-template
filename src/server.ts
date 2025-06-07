@@ -5,6 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import { appConfig } from "./config";
+import { database } from "./database";
 import { routes } from "./routes";
 import { logger } from "./utils";
 
@@ -29,8 +30,11 @@ app.use(
 
 app.use("/api", routes);
 
-const initializeApp = () => {
+const initializeApp = async () => {
   try {
+    await database.authenticate();
+    logger.info("Database connected successfully ✅");
+
     app.listen(appConfig.PORT, () => {
       logger.info(
         `[${appConfig.NODE_ENV}] Server is running on http://localhost:${appConfig.PORT} 🚀🚀`,
