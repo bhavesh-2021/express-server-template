@@ -1,6 +1,7 @@
 import express from "express";
 
 import compression from "compression";
+import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
@@ -10,6 +11,14 @@ import { routes } from "./routes";
 import { logger } from "./utils";
 
 const app = express();
+
+// Enable CORS based on environment configuration
+app.use(
+  cors({
+    origin: appConfig.CORS_ORIGIN,
+    credentials: true,
+  }),
+);
 
 // Application-level middleware
 app.use(express.json());

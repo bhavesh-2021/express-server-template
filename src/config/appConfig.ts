@@ -10,4 +10,5 @@ export const appConfig = {
   DB_USER: process.env.DB_USER,
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_HOSTNAME: process.env.DB_HOSTNAME,
+  CORS_ORIGIN: process.env.CORS_ORIGIN,
 };
